@@ -7,7 +7,7 @@ class ProductService {
   final String baseUrl = 'https://fakestoreapi.com/products';
 
   Future<List<ProductModel>> fetchProducts() async {
-    final response = await http.get(Uri.parse(apiUrl));
+    final response = await http.get(Uri.parse(baseUrl));
 
     if (response.statusCode == 200) {
       List data = json.decode(response.body);

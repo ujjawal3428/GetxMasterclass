@@ -1,17 +1,33 @@
 import 'package:get/get.dart';
 import 'package:getx_products/app/modules/product/models/product_model.dart';
+import 'package:getx_products/services/product_service.dart';
 
 class ProductController extends GetxController {
-  var products = <ProductModel>[].obs;
+  var productList = <ProductModel>[].obs;
+  var errorMessage = ''.obs;
+  var isLoading = false.obs;
+
+  final ProductService productService;
+
+  ProductController({required this.productService});
 
   @override
   void onInit() {
     super.onInit();
-    // Initialize with some sample products
-    products.addAll([
-      ProductModel(title: 'Product 1', price: 10.0),
-      ProductModel(title: 'Product 2', price: 20.0),
-      ProductModel(title: 'Product 3', price: 30.0),
-    ]);
+    fetchProducts();
+  }
+
+  void fetchProducts() async {
+    try {
+      isLoading(true);
+      errorMessage('');
+      var products = await productService.fetchProducts();
+      productList.assignAll(products);
+    } catch (e) {
+       Get.log('Product fetch error: $e'); 
+    errorMessage('Failed to load products: $e');
+    } finally {
+      isLoading(false);
+    }
   }
 }
