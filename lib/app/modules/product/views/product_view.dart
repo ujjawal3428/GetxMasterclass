@@ -17,7 +17,7 @@ class ProductView extends StatelessWidget {
           itemBuilder: (context, index) {
             final product = productcontroller.products[index];
             return ListTile(
-              title: Text(product.name),
+              title: Text(product.title),
               subtitle: Text('\$${product.price.toString()}'),
               onTap: () {
                 Get.toNamed('/product-details', arguments: product);
