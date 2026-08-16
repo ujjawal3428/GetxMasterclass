@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_products/app/modules/product/controllers/cart_controller.dart';
+import 'package:getx_products/routes/app_pages.dart';
 
 import '../models/product_model.dart';
 
@@ -15,18 +16,18 @@ class ProductDetailsView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Details'),
+        title: const Text('Product Details'),
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              Get.toNamed('/cart');
+              Get.toNamed(Routes.CART);
             },
           ),
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -35,8 +36,8 @@ class ProductDetailsView extends StatelessWidget {
               child: Container(
                 height: 200,
                 width: 400,
-                decoration: BoxDecoration(color: Colors.blue),
-                child: Image(image: AssetImage(''), fit: BoxFit.cover),
+                decoration: const BoxDecoration(color: Colors.blue),
+                child: const Image(image: AssetImage(''), fit: BoxFit.cover),
               ),
             ),
             Padding(
@@ -51,9 +52,8 @@ class ProductDetailsView extends StatelessWidget {
               '\$${product.price.toString()}',
               style: TextStyle(fontSize: 20, color: Colors.grey.shade700),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              child: const Text('Add to Cart'),
               onPressed: () {
                 cartController.addToCart(product);
                 Get.snackbar(
@@ -66,6 +66,7 @@ class ProductDetailsView extends StatelessWidget {
                   borderWidth: 2,
                 );
               },
+              child: const Text('Add to Cart'),
             ),
           ],
         ),
