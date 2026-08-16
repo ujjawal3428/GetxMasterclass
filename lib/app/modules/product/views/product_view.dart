@@ -22,16 +22,36 @@ class ProductView extends StatelessWidget {
           itemCount: productcontroller.productList.length,
           itemBuilder: (context, index) {
             final product = productcontroller.productList[index];
-            return ListTile(
-              title: Text(product.title),
-              subtitle: Text('\$${product.price.toString()}'),
-              onTap: () {
-                Get.toNamed('/product-details', arguments: product);
-              },
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.blueGrey,
+                ),
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text(product.title, style: TextStyle(
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  ),
+                  subtitle: Text('\$${product.price.toString()}',
+                  style: TextStyle(color: Colors.white70),),
+                  onTap: () {
+                    Get.toNamed('/product-details', arguments: product);
+                  },
+                ),
+              ),
             );
           },
         );
-      }),
+      }
+      ),      
     );
   }
 }

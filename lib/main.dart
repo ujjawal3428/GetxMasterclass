@@ -8,7 +8,7 @@ import 'package:getx_products/services/cart_service.dart';
 import 'package:getx_products/services/product_service.dart';
 
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init();  
   Get.put(CartService(), permanent : true);
   Get.put(ProductService());
   Get.put(CartController());
